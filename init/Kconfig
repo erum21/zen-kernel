@@ -28,6 +28,30 @@ config BUILDTIME_EXTABLE_SORT
 
 menu "General setup"
 
+config ZEN_INTERACTIVE
+	bool "Tune kernel for interactivity"
+	default y
+	help
+	  Tunes the kernel for responsiveness at the cost of throughput and power usage.
+
+	  --- VM ---
+	    Mem dirty before writeback.....: 10 %  -> 32 MB
+	    Mem dirty before sync writeback: 20 %  -> 64 MB
+
+	  --- Cpufreq Ondemand Governor ---
+	    Frequency down differential....: 10 %  -> 30 %
+	    Frequency up threshold.........: 80 %  -> 60 %
+	    Sampling down factor...........:  1    -> 10
+	    Micro freq down differential...:  3 %  -> 30 %
+	    Micro freq up threshold........: 95 %  -> 60 %
+
+	  --- CPU Scheduler ---
+	    Scheduling latency.............:  6    ->  3    ms
+	    Minimal granularity............:  0.75 ->  0.3  ms
+	    Wakeup granularity.............:  1    ->  0.5  ms
+	    CPU migration cost.............:  0.5  ->  0.25 ms
+	    Bandwidth slice size...........:  5    ->  3    ms
+
 config BROKEN
 	bool
 
